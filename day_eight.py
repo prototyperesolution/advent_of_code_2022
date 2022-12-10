@@ -37,24 +37,24 @@ def solution_part_one(input_path):
     with open(input_path) as f:
         lines = f.read()
     lines = lines.split('\n')
-    lines = np.array(lines)
-    grid = []
-    for i in range(len(lines)):
-        line = list(str(lines[i]))
-        line = [int(x) for x in line]
-        grid.append(line)
-    grid = grid[:-1]
-    grid = np.array(grid)
+    grid = [[int(x) for x in line] for line in lines[:-1]]
 
     newgrid = np.rot90(find_highs(grid))
     newgrid += find_highs(np.rot90(grid))
     final = np.zeros(np.shape(newgrid)) + 1
     final = np.where(newgrid > 0, final, np.zeros(np.shape(newgrid)))
 
-    #tst = [0,1,2,3,4,5]
-    print(newgrid)
     visualise(newgrid)
     return np.sum(final)
+
+def solution_part_two(input_path):
+    with open(input_path) as f:
+        lines = f.read()
+    lines = lines.split('\n')
+    lines = np.array(lines)
+    grid = [[int(x) for x in line] for line in lines[:-1]]
+    print(grid)
+
 
 
 
