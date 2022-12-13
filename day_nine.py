@@ -39,7 +39,6 @@ def solution_part_two(input_path):
             positions[-1][0] += md[dir][0]
             positions[-1][1] += md[dir][1]
             for x in range(8,-1,-1):
-                print('x is',x)
                 if abs(positions[x][0] - positions[x+1][0]) > 1 or abs(positions[x][1] - positions[x+1][1]) > 1:
                     xdis = 0 if positions[x+1][0] == positions[x][0] else (positions[x+1][0] - positions[x][0]) / abs(positions[x+1][0] - positions[x][0])
                     ydis = 0 if positions[x+1][1] == positions[x][1] else (positions[x+1][1] - positions[x][1]) / abs(positions[x+1][1] - positions[x][1])
@@ -47,7 +46,6 @@ def solution_part_two(input_path):
                     positions[x][1] += int(ydis)
 
                 if x == 0:
-                    print('here')
                     t_set.add((positions[x][0], positions[x][1]))
 
 
