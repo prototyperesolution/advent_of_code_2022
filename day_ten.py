@@ -10,18 +10,18 @@ def solution_part_one(input_path):
     instructions = lines.split('\n')[:-1]
     cycles = 0
     sigstrength = 1
-    cts = {}
+    ans = 0
     for instr in instructions:
         if 'noop' in instr:
             cycles += 1
-            cts[cycles] = sigstrength
+            if cycles in range(20,260,40):
+                ans += cycles*sigstrength
         else:
             for i in range(2):
                 cycles += 1
-                cts[cycles] = sigstrength
+                if cycles in range(20, 260, 40):
+                    ans += cycles * sigstrength
             sigstrength += int(instr.split()[-1])
-
-    ans = sum([x*cts[x] for x in range(20,260,40)])
     return ans
 
 
