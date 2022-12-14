@@ -23,4 +23,6 @@ def solution_part_one(input_path):
 
     ans = sum([x*cts[x] for x in range(20,260,40)])
     return ans
-solution_part_one('input.txt')
+
+
+print(solution_part_one('input.txt'))
