@@ -41,6 +41,7 @@ def solution_part_two(input_path):
         lines = f.read()
     grid = np.array([list(lines.split('\n')[x]) for x in range(len(lines.split('\n'))-1)])
     queue = []
+    end = None
 
     for x in range(len(grid)):
         for y in range(len(grid[x])):
@@ -50,22 +51,22 @@ def solution_part_two(input_path):
     for x in range(len(grid)):
         for y in range(len(grid[x])):
             if grid[x,y] == 'E':
-                queue.append((x, y))
+                queue.append([x, y])
                 grid[x,y] = '{'
+                end = (x,y)
 
-    shortest_dist = 0
-    distances = {(queue[0][0], queue[0][1]): 0}
-    new_grid = np.zeros((np.shape(grid)))
+
+    distances = {end: 0}
     while queue:
         curr = queue.pop(0)
         for neighbour in find_neighbours_two(curr[0],curr[1], grid):
             if (neighbour[0],neighbour[1]) not in distances:
                 queue.append(neighbour)
                 distances[(neighbour[0],neighbour[1])] = distances[(curr[0],curr[1])]+1
-                new_grid[neighbour[0],neighbour[1]] = distances[(curr[0], curr[1])] + 1
                 if grid[neighbour[0], neighbour[1]] == 'a':
                     shortest_dist = distances[(neighbour[0],neighbour[1])]
                     return shortest_dist
+    print(distances)
 
 
 def find_neighbours(x,y,grid):
@@ -100,4 +101,4 @@ def find_neighbours_two(x,y,grid):
             neighbours.append((x, y-1))
     return neighbours
 
-print(solution_part_two('input.txt'))
+print(solution_part_two('input_2.txt'))
